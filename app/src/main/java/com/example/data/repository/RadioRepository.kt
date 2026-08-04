@@ -17,7 +17,7 @@ class RadioRepository(private val favoriteStationDao: FavoriteStationDao) {
             url = "https://g2qd375ol7an-hls-live.5centscdn.com/Radio/eae835e83c0494a376229f254f7d3392.sdp/chunks.m3u8",
             country = "CR",
             tags = "Información, Noticias, Deportes, Variedad",
-            favicon = "https://cdn-radiotime-logos.tunein.com/s276433q.png"
+            favicon = "https://graph.facebook.com/TeleticaRadio/picture?width=300&height=300"
         ),
         RadioStation(
             name = "Radio Musical 97.5 FM",

@@ -1,5 +1,5 @@
 {
-  "name": "Radio CR-PE",
+  "name": "Radio Mundial",
   "description": "Una aplicación de radio interactiva y funcional con emisoras reales en vivo de Costa Rica y Perú.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

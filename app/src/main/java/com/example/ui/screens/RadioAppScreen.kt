@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +34,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -64,79 +68,99 @@ fun RadioAppScreen(
 
     var activeTab by remember { mutableStateOf(0) } // 0 = Emisoras, 1 = Buscar, 2 = Favoritos
 
-    Scaffold(
-        modifier = modifier
-            .fillMaxSize()
-            .statusBarsPadding()
-            .navigationBarsPadding(),
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Radio,
-                            contentDescription = null,
-                            tint = AmberGlow,
-                            modifier = Modifier.size(24.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "RADIO CR-PE",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Black,
-                                letterSpacing = 1.5.sp,
-                                fontFamily = FontFamily.Monospace
-                            ),
-                            color = Color.White
-                        )
-                    }
-                },
-                actions = {
-                    // Quick blinking indicator to show the stream is active/listening
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(end = 12.dp)
-                    ) {
-                        val infiniteTransition = rememberInfiniteTransition(label = "blinker")
-                        val blinkAlpha by infiniteTransition.animateFloat(
-                            initialValue = 0.2f,
-                            targetValue = 1.0f,
-                            animationSpec = infiniteRepeatable(
-                                animation = tween(durationMillis = 600, easing = LinearEasing),
-                                repeatMode = RepeatMode.Reverse
-                            ),
-                            label = "live_dot"
-                        )
+    Box(modifier = modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = com.example.R.drawable.img_simpsons_bg),
+            contentDescription = "Fondo de los Simpson",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.30f))
+        )
 
-                        Box(
-                            modifier = Modifier
-                                .size(8.dp)
-                                .clip(CircleShape)
-                                .background(
-                                    if (isPlaying) Color(0xFFD32F2F).copy(alpha = blinkAlpha)
-                                    else Color.Gray
+        Scaffold(
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+                .navigationBarsPadding(),
+            containerColor = Color.Transparent,
+            topBar = {
+                CenterAlignedTopAppBar(
+                    title = {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Radio,
+                                contentDescription = null,
+                                tint = Color(0xFF9C27B0), // Purple to match the "RADIO" text
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = buildAnnotatedString {
+                                    withStyle(style = SpanStyle(color = Color(0xFF9C27B0))) { // Morado
+                                        append("RADIO ")
+                                    }
+                                    withStyle(style = SpanStyle(color = Color(0xFF2196F3))) { // Azul
+                                        append("MUNDIAL")
+                                    }
+                                },
+                                style = MaterialTheme.typography.titleLarge.copy(
+                                    fontWeight = FontWeight.Black,
+                                    letterSpacing = 1.5.sp,
+                                    fontFamily = FontFamily.Monospace
                                 )
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = if (isPlaying) "VIVO" else "LISTO",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.Monospace
-                            ),
-                            color = if (isPlaying) Color(0xFFD32F2F) else Color.Gray
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
+                            )
+                        }
+                    },
+                    actions = {
+                        // Quick blinking indicator to show the stream is active/listening
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(end = 12.dp)
+                        ) {
+                            val infiniteTransition = rememberInfiniteTransition(label = "blinker")
+                            val blinkAlpha by infiniteTransition.animateFloat(
+                                initialValue = 0.2f,
+                                targetValue = 1.0f,
+                                animationSpec = infiniteRepeatable(
+                                    animation = tween(durationMillis = 600, easing = LinearEasing),
+                                    repeatMode = RepeatMode.Reverse
+                                ),
+                                label = "live_dot"
+                            )
+
+                            Box(
+                                modifier = Modifier
+                                    .size(8.dp)
+                                    .clip(CircleShape)
+                                    .background(
+                                        if (isPlaying) Color(0xFFD32F2F).copy(alpha = blinkAlpha)
+                                        else Color.Gray
+                                    )
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = if (isPlaying) "VIVO" else "LISTO",
+                                style = MaterialTheme.typography.labelSmall.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    fontFamily = FontFamily.Monospace
+                                ),
+                                color = if (isPlaying) Color(0xFFD32F2F) else Color.Gray
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = Color.Transparent
+                    )
                 )
-            )
-        }
-    ) { innerPadding ->
+            }
+        ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -153,7 +177,7 @@ fun RadioAppScreen(
             // 2. MAIN INTERACTIVE NAVIGATION TABS
             TabRow(
                 selectedTabIndex = activeTab,
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = Color.Transparent,
                 contentColor = AmberGlow,
                 indicator = { tabPositions ->
                     if (activeTab < tabPositions.size) {
@@ -332,6 +356,7 @@ fun RadioAppScreen(
             )
         }
     }
+}
 }
 
 @Composable
@@ -868,7 +893,7 @@ fun BottomPlayerControls(
                         )
                     } else {
                         Text(
-                            text = "RADIO CR-PE RECEPTOR",
+                            text = "RADIO MUNDIAL RECEPTOR",
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.Monospace

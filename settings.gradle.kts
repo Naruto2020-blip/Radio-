@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Radio CR-PE"
+rootProject.name = "Radio Mundial"
 
 include(":app")
