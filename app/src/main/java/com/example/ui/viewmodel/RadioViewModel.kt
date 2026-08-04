@@ -10,6 +10,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import com.example.data.database.AppDatabase
 import com.example.data.model.RadioStation
 import com.example.data.repository.RadioRepository
+import com.example.data.service.RadioPlaybackService
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -75,6 +76,12 @@ class RadioViewModel(application: Application) : AndroidViewModel(application) {
         setupPlayerListener()
         loadCuratedStations()
 
+        RadioPlaybackService.onStopPlayback = {
+            if (exoPlayer.isPlaying) {
+                exoPlayer.pause()
+            }
+        }
+
         // Sync favorite status of currently playing station
         viewModelScope.launch {
             _currentStation.collect { station ->
@@ -96,6 +103,17 @@ class RadioViewModel(application: Application) : AndroidViewModel(application) {
         exoPlayer.addListener(object : Player.Listener {
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 _isPlaying.value = isPlaying
+                if (isPlaying) {
+                    _currentStation.value?.let { station ->
+                        RadioPlaybackService.startService(
+                            getApplication(),
+                            station.name,
+                            "${if (station.country == "CR") "Costa Rica" else "Perú"} - En Vivo"
+                        )
+                    }
+                } else {
+                    RadioPlaybackService.stopService(getApplication())
+                }
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
@@ -107,6 +125,7 @@ class RadioViewModel(application: Application) : AndroidViewModel(application) {
                 _isPlaying.value = false
                 _isBuffering.value = false
                 _playbackError.value = "Error al reproducir la transmisión: ${error.localizedMessage ?: "URL inaccesible"}"
+                RadioPlaybackService.stopService(getApplication())
             }
         })
     }
@@ -125,9 +144,17 @@ class RadioViewModel(application: Application) : AndroidViewModel(application) {
                 exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.prepare()
                 exoPlayer.play()
+
+                // Explicitly update foreground service to show current station details
+                RadioPlaybackService.startService(
+                    getApplication(),
+                    station.name,
+                    "${if (station.country == "CR") "Costa Rica" else "Perú"} - En Vivo"
+                )
             } catch (e: Exception) {
                 _playbackError.value = "No se pudo iniciar la reproducción: ${e.localizedMessage}"
                 _isBuffering.value = false
+                RadioPlaybackService.stopService(getApplication())
             }
         }
     }
@@ -207,6 +234,8 @@ class RadioViewModel(application: Application) : AndroidViewModel(application) {
 
     override fun onCleared() {
         super.onCleared()
+        RadioPlaybackService.onStopPlayback = null
+        RadioPlaybackService.stopService(getApplication())
         exoPlayer.release()
     }
 }

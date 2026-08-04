@@ -947,51 +947,6 @@ fun BottomPlayerControls(
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Volume adjustment slider
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                val speakerIcon = when {
-                    volume == 0.0f -> Icons.Default.VolumeMute
-                    volume < 0.5f -> Icons.Default.VolumeDown
-                    else -> Icons.Default.VolumeUp
-                }
-
-                Icon(
-                    imageVector = speakerIcon,
-                    contentDescription = "Volumen",
-                    tint = AmberGlow,
-                    modifier = Modifier.size(20.dp)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Slider(
-                    value = volume,
-                    onValueChange = onVolumeChange,
-                    colors = SliderDefaults.colors(
-                        thumbColor = AmberGlow,
-                        activeTrackColor = AmberGlow,
-                        inactiveTrackColor = Color(0xFF2E2E2E)
-                    ),
-                    modifier = Modifier.weight(1f)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Text(
-                    text = "${(volume * 100).toInt()}%",
-                    style = MaterialTheme.typography.labelSmall.copy(
-                        fontFamily = FontFamily.Monospace,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = Color.LightGray
-                )
-            }
         }
     }
 }

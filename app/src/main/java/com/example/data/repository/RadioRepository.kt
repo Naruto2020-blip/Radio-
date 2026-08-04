@@ -68,7 +68,83 @@ class RadioRepository(private val favoriteStationDao: FavoriteStationDao) {
             tags = "Católico, Religioso, Mensajes, Oración",
             favicon = "https://cdn-radiotime-logos.tunein.com/s13309q.png"
         ),
-
+        RadioStation(
+            name = "Bésame 89.9 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_BESAME_AAC.aac",
+            country = "CR",
+            tags = "Romántica, Baladas, Amor",
+            favicon = "https://www.besame.cr/wp-content/uploads/2020/09/cropped-logo-besame-300x300.png"
+        ),
+        RadioStation(
+            name = "Los 40 Costa Rica 104.3 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_LOS40_AAC.aac",
+            country = "CR",
+            tags = "Pop, Éxitos, Hits, Pop Inglés",
+            favicon = "https://los40.com/los40/global/img/logos/los40-logo-redondo.png"
+        ),
+        RadioStation(
+            name = "Radio Columbia 98.7 FM",
+            url = "https://columbia.grupocolumbia.co.cr:8000/stream",
+            country = "CR",
+            tags = "Noticias, Deportes, Debate, Opinión",
+            favicon = "https://columbia.co.cr/wp-content/uploads/2021/04/cropped-favicon-columbia-192x192.png"
+        ),
+        RadioStation(
+            name = "Radio Fides 93.1 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_FIDES_AAC.aac",
+            country = "CR",
+            tags = "Católico, Religioso, Oración, Mensajes",
+            favicon = "https://www.radiofides.co.cr/wp-content/uploads/2020/09/cropped-logo-fides-new-192x192.jpg"
+        ),
+        RadioStation(
+            name = "Q'Teja 90.7 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_QTEJA_AAC.aac",
+            country = "CR",
+            tags = "Popular, Grupera, Cumbia, Latina",
+            favicon = "https://www.qteja.cr/wp-content/uploads/2020/09/cropped-logo-qteja-2-192x192.png"
+        ),
+        RadioStation(
+            name = "La Caliente 90.7 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_CALIENTE_AAC.aac",
+            country = "CR",
+            tags = "Cumbia, Tropical, Salsa, Grupera",
+            favicon = "https://caliente.cr/wp-content/uploads/2020/09/cropped-logo-caliente-192x192.png"
+        ),
+        RadioStation(
+            name = "Radio Hit 104.7 FM",
+            url = "https://columbia.grupocolumbia.co.cr:9050/stream",
+            country = "CR",
+            tags = "Rock, Pop, Anglo, Alternativo",
+            favicon = "https://columbia.co.cr/wp-content/uploads/2021/04/cropped-favicon-hit-192x192.png"
+        ),
+        RadioStation(
+            name = "Radio Centro 96.3 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_CENTRO_AAC.aac",
+            country = "CR",
+            tags = "Baladas, Romántica, Recuerdos, Oro",
+            favicon = "https://www.centro963.cr/wp-content/uploads/2020/09/cropped-logo-centro-192x192.png"
+        ),
+        RadioStation(
+            name = "Zoom Radio 91.9 FM",
+            url = "https://playerservices.streamtheworld.com/api/livestream-redirect/CRC_ZOOM_AAC.aac",
+            country = "CR",
+            tags = "Retro, 80s, 90s, Clásicos, Anglo",
+            favicon = "https://zoom919.com/wp-content/uploads/2020/09/cropped-logo-zoom-192x192.png"
+        ),
+        RadioStation(
+            name = "Radio Sinfonola 90.3 FM",
+            url = "http://rtvhd.net:9912/stream",
+            country = "CR",
+            tags = "Recuerdos, Boleros, Clásicos, Pasado",
+            favicon = "https://www.sinfonola.co.cr/wp-content/uploads/2019/08/cropped-logo-sinfonola-1-192x192.png"
+        ),
+        RadioStation(
+            name = "Super Estación 89.1 FM",
+            url = "http://rtvhd.net:9922/stream",
+            country = "CR",
+            tags = "Noticias, Música, Deportes, Variedad",
+            favicon = "https://superestacion.cr/wp-content/uploads/2020/06/cropped-super-favicon-192x192.png"
+        ),
         // === PERU ===
         RadioStation(
             name = "Radio Oxígeno 102.1 FM",
@@ -125,6 +201,90 @@ class RadioRepository(private val favoriteStationDao: FavoriteStationDao) {
             country = "PE",
             tags = "Noticias, Política, Debate, Opinión",
             favicon = "https://yt3.googleusercontent.com/ytc/AIdro_moHkYj7-6YxW9I7Y3U0Z6I_k1I-X0_77S3GZfB=s900-c-k-c0x00ffffff-no-rj"
+        ),
+        RadioStation(
+            name = "Ritmo Romántica 93.1 FM",
+            url = "https://mdstrm.com/audio/5fada5850974b6080649727d/icecast.audio",
+            country = "PE",
+            tags = "Romántica, Baladas, Amor, Bachata",
+            favicon = "https://graficos.crp.pe/v2/logos/r-ritmo-romantica.png"
+        ),
+        RadioStation(
+            name = "Radio La Inolvidable 93.7 FM",
+            url = "https://mdstrm.com/audio/5fad1e1141ccfb0809b43e5c/icecast.audio",
+            country = "PE",
+            tags = "Recuerdos, Baladas, Oro, Clásicos",
+            favicon = "https://graficos.crp.pe/v2/logos/r-la-inolvidable.png"
+        ),
+        RadioStation(
+            name = "Radio Moda Te Mueve 97.3 FM",
+            url = "https://mdstrm.com/audio/5fada51df95e0c0827293570/icecast.audio",
+            country = "PE",
+            tags = "Reggaeton, Urbano, Trap, Hip-Hop",
+            favicon = "https://graficos.crp.pe/v2/logos/r-moda.png"
+        ),
+        RadioStation(
+            name = "Radio Oasis 100.1 FM",
+            url = "https://mdstrm.com/audio/5fada5a9cb34b50821d3f58a/icecast.audio",
+            country = "PE",
+            tags = "Rock, Pop, 80s, 90s, Clásicos",
+            favicon = "https://graficos.crp.pe/v2/logos/r-oasis.png"
+        ),
+        RadioStation(
+            name = "Radio Planeta 107.7 FM",
+            url = "https://mdstrm.com/audio/5fada5bfe4e09508207a7a51/icecast.audio",
+            country = "PE",
+            tags = "Pop, Éxitos, Electrónica, Hits Inglés",
+            favicon = "https://graficos.crp.pe/v2/logos/r-planeta.png"
+        ),
+        RadioStation(
+            name = "Radio Nueva Q 107.1 FM",
+            url = "https://mdstrm.com/audio/5fada5cde4e09508207a7ab1/icecast.audio",
+            country = "PE",
+            tags = "Cumbia, Sanjuanera, Tropical, Popular",
+            favicon = "https://graficos.crp.pe/v2/logos/r-nuevaq.png"
+        ),
+        RadioStation(
+            name = "Radio Felicidad 88.9 FM",
+            url = "https://mdstrm.com/audio/5fada52dfc16c006bd63371b/icecast.audio",
+            country = "PE",
+            tags = "Recuerdos, Baladas, Oro, Clásicos, Criollo",
+            favicon = "https://graficos.crp.pe/v2/logos/r-felicidad.png"
+        ),
+        RadioStation(
+            name = "Radio Mar Plus 106.3 FM",
+            url = "https://mdstrm.com/audio/5fada53bf95e0c08272935d2/icecast.audio",
+            country = "PE",
+            tags = "Salsa, Merengue, Tropical, Timba",
+            favicon = "https://graficos.crp.pe/v2/logos/r-mar.png"
+        ),
+        RadioStation(
+            name = "Radio Panamericana 101.1 FM",
+            url = "https://streaming.grupopanamericana.pe/panamericana",
+            country = "PE",
+            tags = "Salsa, Tropical, Merengue, Timba, Pop",
+            favicon = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Logo_Radio_Panamericana.png"
+        ),
+        RadioStation(
+            name = "Radio Onda Cero 98.1 FM",
+            url = "https://streaming.grupopanamericana.pe/ondacero",
+            country = "PE",
+            tags = "Reggaeton, Urbano, Trap, Pop, Hits",
+            favicon = "https://panamericana.pe/static/img/ondacero.png"
+        ),
+        RadioStation(
+            name = "Radio Doble Nueve 99.1 FM",
+            url = "https://icecast.doblenueve.com/stream",
+            country = "PE",
+            tags = "Rock, Alternativo, Indie, Metal",
+            favicon = "https://doblenueve.com/wp-content/uploads/2016/12/cropped-logo-99-new-192x192.png"
+        ),
+        RadioStation(
+            name = "Radio Karibeña 94.9 FM",
+            url = "http://167.114.118.120:8044/stream",
+            country = "PE",
+            tags = "Cumbia, Popular, Tropical, Fiesta",
+            favicon = "https://radiokaribena.pe/wp-content/uploads/2021/04/cropped-favicon-192x192.png"
         )
     )
 
